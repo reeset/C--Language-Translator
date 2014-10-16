@@ -41,3 +41,35 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+lang_files/Properties/Settings.Designer.cs
+lang_files/bin/Debug/lang_files.exe
+*.exe
+lang_files/bin/Debug/lang_files.exe.config
+lang_files/bin/Debug/lang_files.vshost.exe.config
+lang_files/bin/Debug/lang_files.vshost.exe.manifest
+lang_files/bin/Release/cy.xml
+lang_files/bin/Release/english.xml
+lang_files/bin/Release/lang_files.exe.config
+lang_files/bin/Release/lang_files.pdb
+lang_files/bin/Debug/lang_files.pdb
+lang_files/bin/Release/lang_files.vshost.exe.config
+lang_files/bin/Release/lang_files.vshost.exe.manifest
+lang_files/bin/Release/nl.xml
+lang_files/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+lang_files/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+lang_files/obj/Debug/lang_files.csproj.FileListAbsolute.txt
+lang_files/obj/Debug/lang_files.csproj.GenerateResource.Cache
+lang_files/obj/Debug/lang_files.csprojResolveAssemblyReference.cache
+lang_files/obj/Debug/lang_files.pdb
+lang_files/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+lang_files/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+lang_files/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+lang_files/obj/Release/DesignTimeResolveAssemblyReferences.cache
+*.cache
+lang_files/obj/Release/lang_files.csproj.FileListAbsolute.txt
+lang_files/obj/Release/lang_files.pdb
+lang_files/obj/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+lang_files/obj/Release/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+lang_files/obj/Release/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+lang_files/obj/Release/TempPE/Properties.Resources.Designer.cs.dll
