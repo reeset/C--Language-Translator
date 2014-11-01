@@ -28,7 +28,7 @@ namespace lang_files
         private void button1_Click(object sender, EventArgs e)
         {
             XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(textBox1.Text);
+            
 
             LANG_PATH = textBox2.Text;
             System.IO.StreamWriter writer = null;
@@ -58,6 +58,7 @@ namespace lang_files
             System.IO.StreamWriter turkishwriter = null;
             System.IO.StreamWriter welshwriter = null;
             System.IO.StreamWriter portuguesewriter = null;
+            System.IO.StreamWriter urduwriter = null;
 
 
             foreach (Control c in this.Controls)
@@ -163,6 +164,12 @@ namespace lang_files
                                 portuguesewriter.Flush();
                                 language_streams.Add("pt", portuguesewriter);
                                 break;
+                            case "ur":
+                                urduwriter = new System.IO.StreamWriter(LANG_PATH + "ur.xml", false, System.Text.Encoding.UTF8);
+                                urduwriter.Write(XML_HEADER);
+                                urduwriter.Flush();
+                                language_streams.Add("ur", urduwriter);
+                                break;
                             default:
                                 break;
                         }
@@ -170,43 +177,49 @@ namespace lang_files
                 }
             }
 
+            string[] csproj_files = new string[comboBox1.Items.Count];
+            comboBox1.Items.CopyTo(csproj_files, 0);
 
-            
-            XmlNamespaceManager mgr = new XmlNamespaceManager(xmldoc.NameTable);
-            mgr.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
-
-            foreach (XmlNode item in xmldoc.SelectNodes("//x:ItemGroup/x:Compile", mgr))
+            foreach (string csproj_file in csproj_files)
             {
-                string test = "";
-                if (item.Attributes["Include"] != null) {
-                    //System.Windows.Forms.MessageBox.Show(item.InnerXml);
-                    test = item.Attributes["Include"].InnerText.ToString();
-                }
-                //System.Windows.Forms.MessageBox.Show(System.IO.Path.GetDirectoryName(textBox1.Text));
-                string intFunction = IsInitializeComponent(System.IO.Path.GetDirectoryName(textBox1.Text) + System.IO.Path.DirectorySeparatorChar.ToString() + test);
+                xmldoc.Load(csproj_file);
+                XmlNamespaceManager mgr = new XmlNamespaceManager(xmldoc.NameTable);
+                mgr.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
+                string snamespace = xmldoc.SelectSingleNode("//x:PropertyGroup/x:RootNamespace", mgr).InnerText;
                 
-                if (intFunction.Trim().Length > 0)
+                foreach (XmlNode item in xmldoc.SelectNodes("//x:ItemGroup/x:Compile", mgr))
                 {
-                    string sform = test.Substring(0, test.IndexOf("."));
-                    string xml_element = String.Empty;
-                    //System.Windows.Forms.MessageBox.Show(intFunction.Length.ToString());
-                    if (rdEnglish.Checked == true)
+                    string test = "";
+                    if (item.Attributes["Include"] != null)
                     {
-                        xml_element = ParseFunction(intFunction, "");
-                        writer.Write("<" + sform + ">" + System.Environment.NewLine + xml_element + "</" + sform + ">" + System.Environment.NewLine);
-                        writer.Flush();
+                        //System.Windows.Forms.MessageBox.Show(item.InnerXml);
+                        test = item.Attributes["Include"].InnerText.ToString();
                     }
-                    foreach (object k in language_streams.Keys)
+                    //System.Windows.Forms.MessageBox.Show(System.IO.Path.GetDirectoryName(textBox1.Text));
+                    string intFunction = IsInitializeComponent(System.IO.Path.GetDirectoryName(csproj_file) + System.IO.Path.DirectorySeparatorChar.ToString() + test);
+
+                    if (intFunction.Trim().Length > 0)
                     {
-                        lbstatus.Text = "Processing " + (string)k + ": " + sform;
-                        xml_element = ParseFunction(intFunction, (string)k);
-                        ((System.IO.StreamWriter)language_streams[(string)k]).Write("<" + sform + ">" + System.Environment.NewLine + xml_element + "</" + sform + ">" + System.Environment.NewLine);
-                        ((System.IO.StreamWriter)language_streams[(string)k]).Flush();
-                        System.Windows.Forms.Application.DoEvents();
+                        string sform = snamespace + "_" + test.Substring(0, test.IndexOf("."));
+                        string xml_element = String.Empty;
+                        //System.Windows.Forms.MessageBox.Show(intFunction.Length.ToString());
+                        if (rdEnglish.Checked == true)
+                        {
+                            xml_element = ParseFunction(intFunction, "");
+                            writer.Write("<" + sform + ">" + System.Environment.NewLine + xml_element + "</" + sform + ">" + System.Environment.NewLine);
+                            writer.Flush();
+                        }
+                        foreach (object k in language_streams.Keys)
+                        {
+                            lbstatus.Text = "Processing " + (string)k + ": " + sform;
+                            xml_element = ParseFunction(intFunction, (string)k);
+                            ((System.IO.StreamWriter)language_streams[(string)k]).Write("<" + sform + ">" + System.Environment.NewLine + xml_element + "</" + sform + ">" + System.Environment.NewLine);
+                            ((System.IO.StreamWriter)language_streams[(string)k]).Flush();
+                            System.Windows.Forms.Application.DoEvents();
+                        }
                     }
                 }
             }
-
             if (rdEnglish.Checked == true)
             {
                 writer.Write("</marcedit>");
@@ -373,6 +386,31 @@ namespace lang_files
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cmdOpen_Click(object sender, EventArgs e)
+        {
+            ///C:\Users\reeset\Dropbox\Symlinked marcedit\net_marcedit\C#\MProgram\MarcEdit\MarcEdit.csproj
+            openFileDialog1.Filter = "C# Project files (*.csproj)|*.csproj|All Files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 0;
+            openFileDialog1.FileName = "";
+
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName.Length > 0)
+            {
+                comboBox1.Items.Add(openFileDialog1.FileName);
+            }
+        }
+
+        private void cmdDirectory_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            textBox2.Text = folderBrowserDialog1.SelectedPath;
+            if (textBox2.Text.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) == false)
+            {
+                textBox2.Text += System.IO.Path.DirectorySeparatorChar.ToString();
+            }
         }
     }
 }

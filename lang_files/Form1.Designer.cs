@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ckFrench = new System.Windows.Forms.CheckBox();
             this.ckDuctch = new System.Windows.Forms.CheckBox();
@@ -53,6 +53,14 @@
             this.lbstatus = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.cmdDirectory = new System.Windows.Forms.PictureBox();
+            this.cmdOpen = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ckUrdu = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdDirectory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdOpen)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -84,19 +92,10 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "C# Project File:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(402, 22);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "C:\\Users\\reeset\\Dropbox\\Symlinked marcedit\\net_marcedit\\C#\\MProgram\\MarcEdit\\Marc" +
-    "Edit.csproj";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 146);
+            this.label2.Location = new System.Drawing.Point(12, 167);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 17);
             this.label2.TabIndex = 4;
@@ -105,7 +104,7 @@
             // ckFrench
             // 
             this.ckFrench.AutoSize = true;
-            this.ckFrench.Location = new System.Drawing.Point(20, 257);
+            this.ckFrench.Location = new System.Drawing.Point(20, 278);
             this.ckFrench.Name = "ckFrench";
             this.ckFrench.Size = new System.Drawing.Size(74, 21);
             this.ckFrench.TabIndex = 5;
@@ -116,7 +115,7 @@
             // ckDuctch
             // 
             this.ckDuctch.AutoSize = true;
-            this.ckDuctch.Location = new System.Drawing.Point(20, 203);
+            this.ckDuctch.Location = new System.Drawing.Point(20, 224);
             this.ckDuctch.Name = "ckDuctch";
             this.ckDuctch.Size = new System.Drawing.Size(67, 21);
             this.ckDuctch.TabIndex = 6;
@@ -127,7 +126,7 @@
             // ckFinnish
             // 
             this.ckFinnish.AutoSize = true;
-            this.ckFinnish.Location = new System.Drawing.Point(20, 230);
+            this.ckFinnish.Location = new System.Drawing.Point(20, 251);
             this.ckFinnish.Name = "ckFinnish";
             this.ckFinnish.Size = new System.Drawing.Size(75, 21);
             this.ckFinnish.TabIndex = 7;
@@ -138,7 +137,7 @@
             // ckChinese
             // 
             this.ckChinese.AutoSize = true;
-            this.ckChinese.Location = new System.Drawing.Point(20, 176);
+            this.ckChinese.Location = new System.Drawing.Point(20, 197);
             this.ckChinese.Name = "ckChinese";
             this.ckChinese.Size = new System.Drawing.Size(125, 21);
             this.ckChinese.TabIndex = 8;
@@ -149,7 +148,7 @@
             // ckGerman
             // 
             this.ckGerman.AutoSize = true;
-            this.ckGerman.Location = new System.Drawing.Point(21, 284);
+            this.ckGerman.Location = new System.Drawing.Point(21, 305);
             this.ckGerman.Name = "ckGerman";
             this.ckGerman.Size = new System.Drawing.Size(81, 21);
             this.ckGerman.TabIndex = 9;
@@ -160,7 +159,7 @@
             // ckGreek
             // 
             this.ckGreek.AutoSize = true;
-            this.ckGreek.Location = new System.Drawing.Point(153, 176);
+            this.ckGreek.Location = new System.Drawing.Point(153, 197);
             this.ckGreek.Name = "ckGreek";
             this.ckGreek.Size = new System.Drawing.Size(69, 21);
             this.ckGreek.TabIndex = 10;
@@ -171,7 +170,7 @@
             // ckHindi
             // 
             this.ckHindi.AutoSize = true;
-            this.ckHindi.Location = new System.Drawing.Point(153, 203);
+            this.ckHindi.Location = new System.Drawing.Point(153, 224);
             this.ckHindi.Name = "ckHindi";
             this.ckHindi.Size = new System.Drawing.Size(62, 21);
             this.ckHindi.TabIndex = 11;
@@ -182,7 +181,7 @@
             // ckItalian
             // 
             this.ckItalian.AutoSize = true;
-            this.ckItalian.Location = new System.Drawing.Point(153, 230);
+            this.ckItalian.Location = new System.Drawing.Point(153, 251);
             this.ckItalian.Name = "ckItalian";
             this.ckItalian.Size = new System.Drawing.Size(67, 21);
             this.ckItalian.TabIndex = 12;
@@ -193,7 +192,7 @@
             // ckJapanese
             // 
             this.ckJapanese.AutoSize = true;
-            this.ckJapanese.Location = new System.Drawing.Point(153, 257);
+            this.ckJapanese.Location = new System.Drawing.Point(153, 278);
             this.ckJapanese.Name = "ckJapanese";
             this.ckJapanese.Size = new System.Drawing.Size(92, 21);
             this.ckJapanese.TabIndex = 13;
@@ -204,7 +203,7 @@
             // ckPoland
             // 
             this.ckPoland.AutoSize = true;
-            this.ckPoland.Location = new System.Drawing.Point(153, 284);
+            this.ckPoland.Location = new System.Drawing.Point(153, 305);
             this.ckPoland.Name = "ckPoland";
             this.ckPoland.Size = new System.Drawing.Size(68, 21);
             this.ckPoland.TabIndex = 14;
@@ -215,7 +214,7 @@
             // ckRussian
             // 
             this.ckRussian.AutoSize = true;
-            this.ckRussian.Location = new System.Drawing.Point(268, 203);
+            this.ckRussian.Location = new System.Drawing.Point(268, 224);
             this.ckRussian.Name = "ckRussian";
             this.ckRussian.Size = new System.Drawing.Size(81, 21);
             this.ckRussian.TabIndex = 15;
@@ -226,7 +225,7 @@
             // ckSpanish
             // 
             this.ckSpanish.AutoSize = true;
-            this.ckSpanish.Location = new System.Drawing.Point(268, 230);
+            this.ckSpanish.Location = new System.Drawing.Point(268, 251);
             this.ckSpanish.Name = "ckSpanish";
             this.ckSpanish.Size = new System.Drawing.Size(81, 21);
             this.ckSpanish.TabIndex = 16;
@@ -237,7 +236,7 @@
             // ckSwedish
             // 
             this.ckSwedish.AutoSize = true;
-            this.ckSwedish.Location = new System.Drawing.Point(268, 257);
+            this.ckSwedish.Location = new System.Drawing.Point(268, 278);
             this.ckSwedish.Name = "ckSwedish";
             this.ckSwedish.Size = new System.Drawing.Size(82, 21);
             this.ckSwedish.TabIndex = 17;
@@ -248,7 +247,7 @@
             // ckTurkish
             // 
             this.ckTurkish.AutoSize = true;
-            this.ckTurkish.Location = new System.Drawing.Point(268, 284);
+            this.ckTurkish.Location = new System.Drawing.Point(268, 305);
             this.ckTurkish.Name = "ckTurkish";
             this.ckTurkish.Size = new System.Drawing.Size(77, 21);
             this.ckTurkish.TabIndex = 18;
@@ -259,7 +258,7 @@
             // ckWelsh
             // 
             this.ckWelsh.AutoSize = true;
-            this.ckWelsh.Location = new System.Drawing.Point(401, 176);
+            this.ckWelsh.Location = new System.Drawing.Point(401, 224);
             this.ckWelsh.Name = "ckWelsh";
             this.ckWelsh.Size = new System.Drawing.Size(69, 21);
             this.ckWelsh.TabIndex = 19;
@@ -270,7 +269,7 @@
             // ckPortuguese
             // 
             this.ckPortuguese.AutoSize = true;
-            this.ckPortuguese.Location = new System.Drawing.Point(268, 176);
+            this.ckPortuguese.Location = new System.Drawing.Point(268, 197);
             this.ckPortuguese.Name = "ckPortuguese";
             this.ckPortuguese.Size = new System.Drawing.Size(103, 21);
             this.ckPortuguese.TabIndex = 20;
@@ -281,7 +280,7 @@
             // rdEnglish
             // 
             this.rdEnglish.AutoSize = true;
-            this.rdEnglish.Location = new System.Drawing.Point(12, 121);
+            this.rdEnglish.Location = new System.Drawing.Point(12, 142);
             this.rdEnglish.Name = "rdEnglish";
             this.rdEnglish.Size = new System.Drawing.Size(139, 21);
             this.rdEnglish.TabIndex = 21;
@@ -300,26 +299,76 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 93);
+            this.textBox2.Location = new System.Drawing.Point(12, 104);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(402, 22);
+            this.textBox2.Size = new System.Drawing.Size(333, 22);
             this.textBox2.TabIndex = 24;
             this.textBox2.Text = "C:\\Users\\reeset\\Documents\\GitHub\\marcedit_language_files\\";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 73);
+            this.label3.Location = new System.Drawing.Point(9, 84);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 17);
+            this.label3.Size = new System.Drawing.Size(199, 17);
             this.label3.TabIndex = 23;
-            this.label3.Text = "C# Project File:";
+            this.label3.Text = "Language Save File Directory:";
+            // 
+            // cmdDirectory
+            // 
+            this.cmdDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmdDirectory.Image = ((System.Drawing.Image)(resources.GetObject("cmdDirectory.Image")));
+            this.cmdDirectory.Location = new System.Drawing.Point(355, 104);
+            this.cmdDirectory.Name = "cmdDirectory";
+            this.cmdDirectory.Size = new System.Drawing.Size(26, 26);
+            this.cmdDirectory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cmdDirectory.TabIndex = 25;
+            this.cmdDirectory.TabStop = false;
+            this.cmdDirectory.Click += new System.EventHandler(this.cmdDirectory_Click);
+            // 
+            // cmdOpen
+            // 
+            this.cmdOpen.Image = ((System.Drawing.Image)(resources.GetObject("cmdOpen.Image")));
+            this.cmdOpen.Location = new System.Drawing.Point(355, 34);
+            this.cmdOpen.Name = "cmdOpen";
+            this.cmdOpen.Size = new System.Drawing.Size(26, 26);
+            this.cmdOpen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cmdOpen.TabIndex = 26;
+            this.cmdOpen.TabStop = false;
+            this.cmdOpen.Click += new System.EventHandler(this.cmdOpen_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(15, 37);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(330, 24);
+            this.comboBox1.TabIndex = 27;
+            // 
+            // ckUrdu
+            // 
+            this.ckUrdu.AutoSize = true;
+            this.ckUrdu.Location = new System.Drawing.Point(401, 197);
+            this.ckUrdu.Name = "ckUrdu";
+            this.ckUrdu.Size = new System.Drawing.Size(61, 21);
+            this.ckUrdu.TabIndex = 28;
+            this.ckUrdu.Tag = "ur";
+            this.ckUrdu.Text = "Urdu";
+            this.ckUrdu.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 388);
+            this.Controls.Add(this.ckUrdu);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmdOpen);
+            this.Controls.Add(this.cmdDirectory);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbstatus);
@@ -341,13 +390,14 @@
             this.Controls.Add(this.ckDuctch);
             this.Controls.Add(this.ckFrench);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.cmdDirectory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdOpen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,7 +408,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ckFrench;
         private System.Windows.Forms.CheckBox ckDuctch;
@@ -380,6 +429,12 @@
         private System.Windows.Forms.Label lbstatus;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.PictureBox cmdDirectory;
+        private System.Windows.Forms.PictureBox cmdOpen;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox ckUrdu;
     }
 }
 
