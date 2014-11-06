@@ -336,20 +336,21 @@ namespace lang_files
                     if (data.EndsWith("+"))
                     {
                         string tdata = string.Empty;
+                        data = data.TrimEnd("+ \"".ToCharArray());
+                        xx += 1;
+                        tdata = lines[xx].Trim(" \";".ToCharArray());
+                        //data += " " + tdata;
                         do
                         {
-                            data = data.TrimEnd("+ \"".ToCharArray());
-                            xx += 1;
-                            tdata = lines[xx].Trim(" \";".ToCharArray());
-                            data += tdata;
                             if (tdata.EndsWith("+"))
                             {
+                                data += " " + tdata.TrimEnd("+ \"".ToCharArray());
                                 xx += 1;
                                 tdata = lines[xx].Trim(" \";".ToCharArray());
                             }
                             else { tdata = ""; }
                         } while (tdata.EndsWith("+"));
-                       data = data.TrimEnd("+ \"".ToCharArray()) + tdata;
+                       data = data.TrimEnd("+ \"".ToCharArray()) + " " +  tdata;
                        
                     }
 
@@ -365,7 +366,7 @@ namespace lang_files
                             System.Xml.Linq.XElement element = new System.Xml.Linq.XElement(parts[1].Trim(),
                                            DoTranslation(data, language));
 
-                            vars += element.ToString();
+                            vars += element.ToString() + System.Environment.NewLine;
 
                             //"<" + parts[1].Trim() + ">\n" + parts[parts.Length - 1].Substring(parts[parts.Length - 1].IndexOf("=") + 1).Trim(" \";".ToCharArray()) + "</" + parts[1].Trim() + ">" + System.Environment.NewLine;
                         }
@@ -374,7 +375,7 @@ namespace lang_files
                             System.Xml.Linq.XElement element = new System.Xml.Linq.XElement(parts[0].Trim(),
                                             DoTranslation(data, language));
 
-                            vars += element.ToString();
+                            vars += element.ToString() + System.Environment.NewLine;
                             //"<" + parts[0].Trim() + ">\n" + parts[parts.Length - 1].Substring(parts[parts.Length - 1].IndexOf("=") + 1).Trim(" \n\";".ToCharArray()) + "</" + parts[0].Trim() + ">\n" + System.Environment.NewLine;
                         }
                     }
