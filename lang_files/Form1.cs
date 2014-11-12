@@ -20,6 +20,27 @@ namespace lang_files
         //public const string LANG_PATH = @"c:\users\reeset\desktop\languagefiles\";
         private string LANG_PATH = String.Empty;
 
+        System.Collections.Hashtable hashenglish = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashfrench = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashdutch = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashfinnish = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashchinese = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashgerman = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashgreek = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashhindi = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashitalian = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashjapanese = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashpolish = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashrussian = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashspanish = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashswedish = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashturkish = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashwelsh = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashportugese = new System.Collections.Hashtable();
+        System.Collections.Hashtable hashurdu = new System.Collections.Hashtable();
+        
+
+
         public Form1()
         {
             InitializeComponent();
@@ -35,12 +56,14 @@ namespace lang_files
 
             if (rdEnglish.Checked == true)
             {
+                hashenglish = LoadLanguage6(LANG_PATH + "english.xml"); 
                 writer = new System.IO.StreamWriter(LANG_PATH + "english.xml", false, System.Text.Encoding.UTF8);
                 writer.Write(XML_HEADER);
                 writer.Flush();
             }
 
             System.Collections.Hashtable language_streams = new System.Collections.Hashtable();
+            System.Collections.Hashtable language_hashes = new System.Collections.Hashtable();
 
             System.IO.StreamWriter frenchwriter = null;
             System.IO.StreamWriter dutchwriter = null;
@@ -69,106 +92,140 @@ namespace lang_files
                         switch (((System.Windows.Forms.CheckBox)c).Tag.ToString().ToLower())
                         {
                             case "zh-cht":
+                                hashchinese = LoadLanguage6(LANG_PATH + "zh-CHT.xml");
+                                language_hashes.Add("zh-cht", hashchinese);
                                 chinesewriter = new System.IO.StreamWriter(LANG_PATH + "zh-CHT.xml", false, System.Text.Encoding.UTF8);
                                 chinesewriter.Write(XML_HEADER);
                                 chinesewriter.Flush();
-                                language_streams.Add("zh-CHT", chinesewriter);
+                                language_streams.Add("zh-cht", chinesewriter);
                                 break;
                             case "nl":
+                                hashdutch = LoadLanguage6(LANG_PATH + "nl.xml");
                                 dutchwriter = new System.IO.StreamWriter(LANG_PATH + "nl.xml", false, System.Text.Encoding.UTF8);
                                 dutchwriter.Write(XML_HEADER);
                                 dutchwriter.Flush();
                                 language_streams.Add("nl", dutchwriter);
+                                language_hashes.Add("nl", hashdutch);
                                 break;
                             case "fi":
+                                hashfinnish = LoadLanguage6(LANG_PATH + "fi.xml");
                                 finnishwriter = new System.IO.StreamWriter(LANG_PATH + "fi.xml", false, System.Text.Encoding.UTF8);
                                 finnishwriter.Write(XML_HEADER);
                                 finnishwriter.Flush();
                                 language_streams.Add("fi", finnishwriter);
+                                language_hashes.Add("fi", hashfinnish);
                                 break;
                             case "fr":
+                                hashfrench = LoadLanguage6(LANG_PATH + "fr.xml");
                                 frenchwriter = new System.IO.StreamWriter(LANG_PATH + "fr.xml", false, System.Text.Encoding.UTF8);
                                 frenchwriter.Write(XML_HEADER);
                                 frenchwriter.Flush();
                                 language_streams.Add("fr", frenchwriter);
+                                language_hashes.Add("fr", hashfrench);
                                 break;
                             case "de":
+                                hashgerman = LoadLanguage6(LANG_PATH + "de.xml");
                                 germanwriter = new System.IO.StreamWriter(LANG_PATH + "de.xml", false, System.Text.Encoding.UTF8);
                                 germanwriter.Write(XML_HEADER);
                                 germanwriter.Flush();
                                 language_streams.Add("de", germanwriter);
+                                language_hashes.Add("de", hashgerman);
                                 break;
                             case "el":
+                                hashgreek = LoadLanguage6(LANG_PATH + "el.xml");
                                 greekwriter = new System.IO.StreamWriter(LANG_PATH + "el.xml", false, System.Text.Encoding.UTF8);
                                 greekwriter.Write(XML_HEADER);
                                 greekwriter.Flush();
                                 language_streams.Add("el", greekwriter);
+                                language_hashes.Add("el", hashgreek);
                                 break;
                             case "hi":
+                                hashhindi = LoadLanguage6(LANG_PATH + "hi.xml");
                                 hindiwriter = new System.IO.StreamWriter(LANG_PATH + "hi.xml", false, System.Text.Encoding.UTF8);
                                 hindiwriter.Write(XML_HEADER);
                                 hindiwriter.Flush();
                                 language_streams.Add("hi", hindiwriter);
+                                language_hashes.Add("hi", hashhindi);
                                 break;
                             case "it":
+                                hashitalian = LoadLanguage6(LANG_PATH + "it.xml");
                                 italianwriter = new System.IO.StreamWriter(LANG_PATH + "it.xml", false, System.Text.Encoding.UTF8);
                                 italianwriter.Write(XML_HEADER);
                                 italianwriter.Flush();
                                 language_streams.Add("it", italianwriter);
+                                language_hashes.Add("it", hashitalian);
                                 break;
                             case "ja":
+                                hashjapanese = LoadLanguage6(LANG_PATH + "ja.xml");
                                 japanesewriter = new System.IO.StreamWriter(LANG_PATH + "ja.xml", false, System.Text.Encoding.UTF8);
                                 japanesewriter.Write(XML_HEADER);
                                 japanesewriter.Flush();
                                 language_streams.Add("ja", japanesewriter);
+                                language_hashes.Add("ja", hashjapanese);
                                 break;
                             case "pl":
+                                hashpolish = LoadLanguage6(LANG_PATH + "pl.xml");
                                 polishwriter = new System.IO.StreamWriter(LANG_PATH + "pl.xml", false, System.Text.Encoding.UTF8);
                                 polishwriter.Write(XML_HEADER);
                                 polishwriter.Flush();
                                 language_streams.Add("pl", polishwriter);
+                                language_hashes.Add("pl", hashpolish);
                                 break;
                             case "ru":
+                                hashrussian = LoadLanguage6(LANG_PATH + "ru.xml");
                                 russianwriter = new System.IO.StreamWriter(LANG_PATH + "ru.xml", false, System.Text.Encoding.UTF8);
                                 russianwriter.Write(XML_HEADER);
                                 russianwriter.Flush();
                                 language_streams.Add("ru", russianwriter);
+                                language_hashes.Add("ru", hashrussian);
                                 break;
                             case "es":
+                                hashspanish = LoadLanguage6(LANG_PATH + "es.xml");
                                 spanishwriter = new System.IO.StreamWriter(LANG_PATH + "es.xml", false, System.Text.Encoding.UTF8);
                                 spanishwriter.Write(XML_HEADER);
                                 spanishwriter.Flush();
                                 language_streams.Add("es", spanishwriter);
+                                language_hashes.Add("es", hashspanish);
                                 break;
                             case "sv":
+                                hashswedish = LoadLanguage6(LANG_PATH + "sv.xml");
                                 swedishwriter = new System.IO.StreamWriter(LANG_PATH + "sv.xml", false, System.Text.Encoding.UTF8);
                                 swedishwriter.Write(XML_HEADER);
                                 swedishwriter.Flush();
                                 language_streams.Add("sv", swedishwriter);
+                                language_hashes.Add("sv", hashswedish);
                                 break;
                             case "tr":
+                                hashturkish = LoadLanguage6(LANG_PATH + "tr.xml");
                                 turkishwriter = new System.IO.StreamWriter(LANG_PATH + "tr.xml", false, System.Text.Encoding.UTF8);
                                 turkishwriter.Write(XML_HEADER);
                                 turkishwriter.Flush();
                                 language_streams.Add("tr", turkishwriter);
+                                language_hashes.Add("tr", hashturkish);
                                 break;
                             case "cy":
+                                hashwelsh = LoadLanguage6(LANG_PATH + "cy.xml");
                                 welshwriter = new System.IO.StreamWriter(LANG_PATH + "cy.xml", false, System.Text.Encoding.UTF8);
                                 welshwriter.Write(XML_HEADER);
                                 welshwriter.Flush();
                                 language_streams.Add("cy", welshwriter);
+                                language_hashes.Add("cy", hashwelsh);
                                 break;
                             case "pt":
+                                hashportugese = LoadLanguage6(LANG_PATH + "pt.xml");
                                 portuguesewriter = new System.IO.StreamWriter(LANG_PATH + "pt.xml", false, System.Text.Encoding.UTF8);
                                 portuguesewriter.Write(XML_HEADER);
                                 portuguesewriter.Flush();
                                 language_streams.Add("pt", portuguesewriter);
+                                language_hashes.Add("pt", hashportugese);
                                 break;
                             case "ur":
+                                hashurdu = LoadLanguage6(LANG_PATH + "ur.xml");
                                 urduwriter = new System.IO.StreamWriter(LANG_PATH + "ur.xml", false, System.Text.Encoding.UTF8);
                                 urduwriter.Write(XML_HEADER);
                                 urduwriter.Flush();
                                 language_streams.Add("ur", urduwriter);
+                                language_hashes.Add("ur", hashurdu);
                                 break;
                             default:
                                 break;
@@ -205,14 +262,14 @@ namespace lang_files
                         //System.Windows.Forms.MessageBox.Show(intFunction.Length.ToString());
                         if (rdEnglish.Checked == true)
                         {
-                            xml_element = ParseFunction(intFunction, "");
+                            xml_element = ParseFunction(intFunction, "", hashenglish);
                             writer.Write("<" + sform + ">" + System.Environment.NewLine + xml_element + "</" + sform + ">" + System.Environment.NewLine);
                             writer.Flush();
                         }
                         foreach (object k in language_streams.Keys)
                         {
                             lbstatus.Text = "Processing " + (string)k + ": " + sform;
-                            xml_element = ParseFunction(intFunction, (string)k);
+                            xml_element = ParseFunction(intFunction, (string)k, ((System.Collections.Hashtable)((System.Collections.Hashtable)language_hashes[(string)k])[sform]));
                             ((System.IO.StreamWriter)language_streams[(string)k]).Write("<" + sform + ">" + System.Environment.NewLine + xml_element + "</" + sform + ">" + System.Environment.NewLine);
                             ((System.IO.StreamWriter)language_streams[(string)k]).Flush();
                             System.Windows.Forms.Application.DoEvents();
@@ -320,7 +377,7 @@ namespace lang_files
             return function2parse;
         }
 
-        private string ParseFunction(string function2parse, string language)
+        private string ParseFunction(string function2parse, string language, System.Collections.Hashtable langhash)
         {
             string vars = String.Empty;
             function2parse = function2parse.Replace(System.Environment.NewLine, "\n");
@@ -362,19 +419,36 @@ namespace lang_files
                         string[] parts = nameval.Split(".".ToCharArray());
                         if (parts.Length > 2)
                         {
-                            
-                            System.Xml.Linq.XElement element = new System.Xml.Linq.XElement(parts[1].Trim(),
-                                           DoTranslation(data, language));
-
+                            System.Xml.Linq.XElement element = null;
+                            if (langhash[parts[1].Trim()] != null)
+                            {
+                                element = new System.Xml.Linq.XElement(parts[1].Trim(),
+                                            langhash[parts[1].Trim()]);
+                            }
+                            else
+                            {
+                                element = new System.Xml.Linq.XElement(parts[1].Trim(),
+                                               DoTranslation(data, language));
+                            }
                             vars += element.ToString() + System.Environment.NewLine;
 
                             //"<" + parts[1].Trim() + ">\n" + parts[parts.Length - 1].Substring(parts[parts.Length - 1].IndexOf("=") + 1).Trim(" \";".ToCharArray()) + "</" + parts[1].Trim() + ">" + System.Environment.NewLine;
                         }
                         else
                         {
-                            System.Xml.Linq.XElement element = new System.Xml.Linq.XElement(parts[0].Trim(),
-                                            DoTranslation(data, language));
+                            System.Xml.Linq.XElement element = null;
 
+                            if (langhash[parts[0].Trim()] != null)
+                            {
+                                element = new System.Xml.Linq.XElement(parts[0].Trim(),
+                                                langhash[parts[0].Trim()]);
+                            }
+                            else
+                            {
+                                element = new System.Xml.Linq.XElement(parts[0].Trim(),
+                                                DoTranslation(data, language));
+
+                            }
                             vars += element.ToString() + System.Environment.NewLine;
                             //"<" + parts[0].Trim() + ">\n" + parts[parts.Length - 1].Substring(parts[parts.Length - 1].IndexOf("=") + 1).Trim(" \n\";".ToCharArray()) + "</" + parts[0].Trim() + ">\n" + System.Environment.NewLine;
                         }
@@ -382,6 +456,35 @@ namespace lang_files
                 }
             }
             return vars;
+        }
+
+        private System.Collections.Hashtable LoadLanguage6(string sfile)
+        {
+            
+            System.Collections.Hashtable language_table = new System.Collections.Hashtable();
+            if (System.IO.File.Exists(sfile) == true)
+            {
+                System.Xml.XmlDocument objXML = new System.Xml.XmlDocument();
+                objXML.Load(sfile);
+                //System.Windows.Forms.MessageBox.Show(objXML.InnerXml);
+                System.Xml.XmlNodeList objNodes = objXML.SelectNodes("/marcedit/*");
+                if (objNodes.Count > 0)
+                {
+
+                    foreach (System.Xml.XmlNode node in objNodes)
+                    {
+                        System.Xml.XmlNodeList nodelist2 = node.SelectNodes("*");
+                        System.Collections.Hashtable form_list = new System.Collections.Hashtable();
+                        foreach (System.Xml.XmlNode node2 in nodelist2)
+                        {
+                            form_list.Add(node2.Name, node2.InnerText);
+                        }
+                        language_table.Add(node.Name, form_list);
+                    }
+                }
+                return language_table;
+            }
+            return null;
         }
 
         private void button2_Click(object sender, EventArgs e)
